@@ -27,13 +27,13 @@ public class BruteForceAttack {
             throws IOException, NoSuchAlgorithmException {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(dictionaryFile))) {
-            String password;
+            String match;
 
-            while ((password = reader.readLine()) != null) {
-                String hashedPassword = hashPassword(password);
+            while ((match = reader.readLine()) != null) {
+                String hashedPassword = hashPassword(match);
 
                 if (hashedPassword.equals(targetHash)) {
-                    System.out.println("Password found: " + password);
+                    System.out.println("Match found: " + match);
                     return true;
                 }
             }
