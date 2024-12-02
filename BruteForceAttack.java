@@ -16,7 +16,7 @@ public class BruteForceAttack {
         try {
             boolean found = performDictionaryAttack(dictionaryFile, targetHash);
             if (!found) {
-                System.out.println("Password not found in the dictionary!");
+                System.out.println("Match not found in the dictionary!");
             }
         } catch (IOException | NoSuchAlgorithmException e) {
             System.err.println("An error occurred: " + e.getMessage());
@@ -30,9 +30,9 @@ public class BruteForceAttack {
             String match;
 
             while ((match = reader.readLine()) != null) {
-                String hashedPassword = hashPassword(match);
+                String hashedMatch = hashMatch(match);
 
-                if (hashedPassword.equals(targetHash)) {
+                if (hashedMatch.equals(targetHash)) {
                     System.out.println("Match found: " + match);
                     return true;
                 }
@@ -42,9 +42,9 @@ public class BruteForceAttack {
         return false;
     }
 
-    public static String hashPassword(String password) throws NoSuchAlgorithmException {
+    public static String hashMatch(String match) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hashBytes = digest.digest(password.getBytes());
+        byte[] hashBytes = digest.digest(match.getBytes());
 
         // Convert byte array to hexadecimal format
         StringBuilder hexString = new StringBuilder();
